@@ -3,12 +3,9 @@ package com.gdsc.waffle.service;
 import com.gdsc.waffle.dto.TodoDto;
 import com.gdsc.waffle.entity.TodoEntity;
 
-import java.util.List;
-
 public interface TodoService {
     void addTodo(Long categoryId, TodoDto todoDto);
     void deleteTodo(Long id);
-    List<TodoDto> findAll();
     TodoDto findById(Long id);
     void update(Long id, TodoDto updateParam);
 

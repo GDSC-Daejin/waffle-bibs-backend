@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class TodoServiceImpl implements TodoService {
@@ -55,5 +57,25 @@ public class TodoServiceImpl implements TodoService {
         todoEntity.setStartTime(updateParam.getStartTime());
         todoEntity.setCategory(updateParam.getCategory());
         todoRepository.save(todoEntity);
+    }
+
+    @Override
+    public List<TodoDto> getAllTodos() {
+        return null;
+    }
+
+    @Override
+    public TodoDto updateTodo(Long id, TodoDto todoDto) {
+        return null;
+    }
+
+    @Override
+    public TodoDto createTodo(TodoDto todoDto) {
+        return null;
+    }
+
+    @Override
+    public TodoDto getTodoById(Long id) {
+        return null;
     }
 }
