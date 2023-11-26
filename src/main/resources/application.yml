@@ -30,3 +30,6 @@ spring:
     init:
       mode: always
       continue-on-error: true
+
+server:
+  port: 8081
