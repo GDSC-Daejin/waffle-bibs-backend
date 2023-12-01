@@ -55,9 +55,9 @@ public class TodoServiceImpl implements TodoService {
     public void update(Long id, TodoDto updateParam) {
         TodoEntity todoEntity = dtoToEntity(findById(id));
         todoEntity.setTitle(updateParam.getTitle());
+        todoEntity.setContents(updateParam.getContents());
         todoEntity.setComplete_chk(updateParam.getComplete_chk());
         todoEntity.setStartTime(updateParam.getStartTime());
-        todoEntity.setCategory(updateParam.getCategory());
         todoRepository.save(todoEntity);
     }
 }

@@ -9,7 +9,7 @@ import lombok.*;
 @Getter
 @Setter
 public class CategoryDto {
-    private Long id;
+//    private Long id;
     private String title;
 
 }
