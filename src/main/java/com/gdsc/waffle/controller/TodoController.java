@@ -44,7 +44,7 @@ public class TodoController {
     @PostMapping("/{categoryId}/todo/add")
     public ResponseEntity<TodoDto> addTodo(@PathVariable Long categoryId, @RequestBody TodoDto todoDto) {
         todoService.addTodo(categoryId, todoDto);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @ApiOperation(value = "todo 수정 API", notes = "선택한 Todo의 내용을 수정하는 API 입니다.")
@@ -58,6 +58,6 @@ public class TodoController {
     @DeleteMapping("/todo/{todoId}")
     public ResponseEntity<Void> deleteTodo(@PathVariable Long todoId) {
         todoService.deleteTodo(todoId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
