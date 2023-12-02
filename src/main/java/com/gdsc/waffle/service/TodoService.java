@@ -11,6 +11,7 @@ public interface TodoService {
     List<TodoDto> findAll(Long id);
     TodoDto findById(Long id);
     void update(Long id, TodoDto updateParam);
+    boolean existsId(Long categoryId);
     // dto --> Entity 로 변환
     default TodoEntity dtoToEntity(TodoDto todoDto) {
         TodoEntity todoEntity = TodoEntity.builder()
