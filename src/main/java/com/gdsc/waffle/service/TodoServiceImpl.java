@@ -12,6 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -55,9 +56,14 @@ public class TodoServiceImpl implements TodoService {
     public void update(Long id, TodoDto updateParam) {
         TodoEntity todoEntity = dtoToEntity(findById(id));
         todoEntity.setTitle(updateParam.getTitle());
+        todoEntity.setContents(updateParam.getContents());
         todoEntity.setComplete_chk(updateParam.getComplete_chk());
         todoEntity.setStartTime(updateParam.getStartTime());
-        todoEntity.setCategory(updateParam.getCategory());
         todoRepository.save(todoEntity);
+    }
+
+    @Override
+    public boolean existsId(Long categoryId) {
+        return categoryRepository.findById(categoryId).isPresent();
     }
 }

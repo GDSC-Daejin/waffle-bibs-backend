@@ -1,6 +1,5 @@
 package com.gdsc.waffle.dto;
 
-import com.gdsc.waffle.entity.CategoryEntity;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -16,5 +15,5 @@ public class TodoDto {
     private String contents;
     private Boolean complete_chk;
     private LocalDate startTime;
-    private CategoryEntity category;
+    private String categoryTitle;
 }

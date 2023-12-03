@@ -12,7 +12,6 @@ public interface CategoryService {
     // Entity --> dto 로 변환
     default CategoryDto entityToDto(CategoryEntity categoryEntity) {
         CategoryDto categoryDto = CategoryDto.builder()
-                .id(categoryEntity.getId())
                 .title(categoryEntity.getTitle())
                 .build();
         return categoryDto;
