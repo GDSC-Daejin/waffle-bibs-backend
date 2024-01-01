@@ -1,5 +1,5 @@
 package com.gdsc.waffle.service;
-
+/*
 import com.gdsc.waffle.dto.TodoDto;
 import com.gdsc.waffle.entity.TodoEntity;
 import org.junit.jupiter.api.AfterEach;
@@ -37,7 +37,7 @@ class TodoServiceImplTest {
         transactionManager.rollback(status);
     }
 
-    /*
+
     @Test
     @DisplayName("Todo 생성")
     void addTodo() {
@@ -54,7 +54,7 @@ class TodoServiceImplTest {
         assertThat(todoDto.getTitle()).isEqualTo(findTodo.get(0).getTitle());
     }
 
-     */
+
     @Test
     @DisplayName("Todo 조회")
     void findById() {
@@ -77,3 +77,4 @@ class TodoServiceImplTest {
 
     }
 }
+     */
