@@ -16,7 +16,6 @@ public interface TodoService {
     default TodoEntity dtoToEntity(TodoDto todoDto) {
         TodoEntity todoEntity = TodoEntity.builder()
                 .id(todoDto.getId())
-                .title(todoDto.getTitle())
                 .contents(todoDto.getContents())
                 .complete_chk(todoDto.getComplete_chk())
                 .startTime(todoDto.getStartTime())
@@ -28,7 +27,6 @@ public interface TodoService {
     default TodoDto entityToDto(TodoEntity todoEntity) {
         TodoDto todoDto = TodoDto.builder()
                 .id(todoEntity.getId())
-                .title(todoEntity.getTitle())
                 .contents(todoEntity.getContents())
                 .complete_chk(todoEntity.getComplete_chk())
                 .startTime(todoEntity.getStartTime())

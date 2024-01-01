@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class TodoDto {
     private Long id;
-    private String title;
     private String contents;
     private Boolean complete_chk;
     private LocalDate startTime;

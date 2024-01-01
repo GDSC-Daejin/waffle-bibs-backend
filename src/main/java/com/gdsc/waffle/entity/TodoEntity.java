@@ -20,8 +20,6 @@ public class TodoEntity {
     @Column
     private Long id;
     @Column @NotNull
-    private String title; // 제목
-    @Column @NotNull
     private String contents; // 내용
     @Column
     @ColumnDefault("true")
