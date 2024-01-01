@@ -54,8 +54,8 @@ public class TodoServiceImpl implements TodoService {
 
     @Override
     public void update(Long id, TodoDto updateParam) {
-        TodoEntity todoEntity = dtoToEntity(findById(id));
-        todoEntity.setTitle(updateParam.getTitle());
+        TodoEntity todoEntity = todoRepository.findById(id).orElseThrow(()
+                -> new ResponseStatusException(HttpStatus.NOT_FOUND, "해당 Todo를 찾을 수 없습니다."));
         todoEntity.setContents(updateParam.getContents());
         todoEntity.setComplete_chk(updateParam.getComplete_chk());
         todoEntity.setStartTime(updateParam.getStartTime());
