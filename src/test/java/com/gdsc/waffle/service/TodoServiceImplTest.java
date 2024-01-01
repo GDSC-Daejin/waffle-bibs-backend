@@ -61,10 +61,8 @@ class TodoServiceImplTest {
 
         // given
         TodoDto todoDto1 = new TodoDto();
-        todoDto1.setTitle("제목1");
         todoDto1.setContents("제목1");
         TodoDto todoDto2 = new TodoDto();
-        todoDto2.setTitle("제목2");
         todoDto2.setContents("제목2");
 
         // when
