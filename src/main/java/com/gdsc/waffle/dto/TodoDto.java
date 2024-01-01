@@ -10,7 +10,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TodoDto {
-    private Long id;
     private String contents;
     private Boolean complete_chk;
     private LocalDate startTime;

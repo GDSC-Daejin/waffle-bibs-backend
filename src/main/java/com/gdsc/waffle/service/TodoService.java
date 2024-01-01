@@ -15,7 +15,6 @@ public interface TodoService {
     // dto --> Entity 로 변환
     default TodoEntity dtoToEntity(TodoDto todoDto) {
         TodoEntity todoEntity = TodoEntity.builder()
-                .id(todoDto.getId())
                 .contents(todoDto.getContents())
                 .complete_chk(todoDto.getComplete_chk())
                 .startTime(todoDto.getStartTime())
@@ -26,7 +25,6 @@ public interface TodoService {
     // Entity --> dto 로 변환
     default TodoDto entityToDto(TodoEntity todoEntity) {
         TodoDto todoDto = TodoDto.builder()
-                .id(todoEntity.getId())
                 .contents(todoEntity.getContents())
                 .complete_chk(todoEntity.getComplete_chk())
                 .startTime(todoEntity.getStartTime())
