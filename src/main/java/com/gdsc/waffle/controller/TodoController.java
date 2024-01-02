@@ -1,6 +1,7 @@
 package com.gdsc.waffle.controller;
 
-import com.gdsc.waffle.dto.TodoDto;
+import com.gdsc.waffle.dto.TodoResponseDto;
+import com.gdsc.waffle.dto.TodoRequestDto;
 import com.gdsc.waffle.service.TodoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,9 +28,9 @@ public class TodoController {
             @ApiResponse(responseCode = "404", description = "해당 카테고리를 찾을 수 없습니다.")
     })
     @GetMapping("/{categoryId}/todo")
-    public ResponseEntity<List<TodoDto>> getAllTodos(@PathVariable Long categoryId) {
+    public ResponseEntity<List<TodoResponseDto>> getAllTodos(@PathVariable Long categoryId) {
         if(todoService.existsId(categoryId)) {
-            List<TodoDto> todos = todoService.findAll(categoryId);
+            List<TodoResponseDto> todos = todoService.findAll(categoryId);
             return new ResponseEntity<>(todos, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -42,9 +43,9 @@ public class TodoController {
                     @ApiResponse(responseCode = "404", description = "해당 Todo를 찾을 수 없습니다.")
     })
     @GetMapping("/todo/{todoId}")
-    public ResponseEntity<TodoDto> getTodo(@PathVariable Long todoId) {
+    public ResponseEntity<TodoResponseDto> getTodo(@PathVariable Long todoId) {
 
-        TodoDto todo = todoService.findById(todoId);
+        TodoResponseDto todo = todoService.findById(todoId);
         return new ResponseEntity<>(todo, HttpStatus.OK);
     }
 
@@ -54,9 +55,9 @@ public class TodoController {
             @ApiResponse(responseCode = "404", description = "해당 카테고리를 찾을 수 없습니다.")
     })
     @PostMapping("/{categoryId}/todo/add")
-    public ResponseEntity<TodoDto> addTodo(@PathVariable Long categoryId, @RequestBody TodoDto todoDto) {
+    public ResponseEntity<TodoRequestDto> addTodo(@PathVariable Long categoryId, @RequestBody TodoRequestDto todoRequestDto) {
         if(todoService.existsId(categoryId)) {
-            todoService.addTodo(categoryId, todoDto);
+            todoService.addTodo(categoryId, todoRequestDto);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -69,8 +70,8 @@ public class TodoController {
             @ApiResponse(responseCode = "404", description = "해당 Todo를 찾을 수 없습니다.")
     })
     @PatchMapping("/todo/{todoId}/update")
-    public ResponseEntity<TodoDto> updateTodo(@PathVariable Long todoId, @RequestBody TodoDto todoDto) {
-        todoService.update(todoId, todoDto);
+    public ResponseEntity<TodoRequestDto> updateTodo(@PathVariable Long todoId, @RequestBody TodoRequestDto todoRequestDto) {
+        todoService.update(todoId, todoRequestDto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
