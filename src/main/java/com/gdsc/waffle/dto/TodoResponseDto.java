@@ -9,9 +9,9 @@ import java.time.LocalDate;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class TodoDto {
+public class TodoResponseDto {
+    private Long id;
     private String contents;
     private Boolean complete_chk;
-    private LocalDate startTime;
     private String categoryTitle;
 }
