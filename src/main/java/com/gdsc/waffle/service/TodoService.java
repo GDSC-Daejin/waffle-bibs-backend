@@ -1,35 +1,58 @@
 package com.gdsc.waffle.service;
 
-import com.gdsc.waffle.dto.TodoDto;
+import com.gdsc.waffle.dto.TodoResponseDto;
+import com.gdsc.waffle.dto.TodoRequestDto;
 import com.gdsc.waffle.entity.TodoEntity;
 
 import java.util.List;
 
 public interface TodoService {
-    void addTodo(Long categoryId, TodoDto todoDto);
+    void addTodo(Long categoryId, TodoRequestDto todoRequestDto);
     void deleteTodo(Long id);
-    List<TodoDto> findAll(Long id);
-    TodoDto findById(Long id);
-    void update(Long id, TodoDto updateParam);
+    List<TodoResponseDto> findAll(Long id);
+    TodoResponseDto findById(Long id);
+    void update(Long id, TodoRequestDto updateParam);
     boolean existsId(Long categoryId);
+
+
+    // request
     // dto --> Entity 로 변환
-    default TodoEntity dtoToEntity(TodoDto todoDto) {
+    default TodoEntity reqToEntity(TodoRequestDto todoRequestDto) {
         TodoEntity todoEntity = TodoEntity.builder()
-                .contents(todoDto.getContents())
-                .complete_chk(todoDto.getComplete_chk())
-                .startTime(todoDto.getStartTime())
+                .contents(todoRequestDto.getContents())
+                .complete_chk(todoRequestDto.getComplete_chk())
                 .build();
         return todoEntity;
     }
 
     // Entity --> dto 로 변환
-    default TodoDto entityToDto(TodoEntity todoEntity) {
-        TodoDto todoDto = TodoDto.builder()
+    default TodoRequestDto reqToDto(TodoEntity todoEntity) {
+        TodoRequestDto todoRequestDto = TodoRequestDto.builder()
                 .contents(todoEntity.getContents())
                 .complete_chk(todoEntity.getComplete_chk())
-                .startTime(todoEntity.getStartTime())
+                .build();
+        return todoRequestDto;
+    }
+
+
+    // response
+    // dto --> Entity 로 변환
+    default TodoEntity resToEntity(TodoResponseDto todoResponseDto) {
+        TodoEntity todoEntity = TodoEntity.builder()
+                .contents(todoResponseDto.getContents())
+                .complete_chk(todoResponseDto.getComplete_chk())
+                .build();
+        return todoEntity;
+    }
+
+    // Entity --> dto 로 변환
+    default TodoResponseDto resToDto(TodoEntity todoEntity) {
+        TodoResponseDto todoResponseDto = TodoResponseDto.builder()
+                .id(todoEntity.getId())
+                .contents(todoEntity.getContents())
+                .complete_chk(todoEntity.getComplete_chk())
                 .categoryTitle(todoEntity.getCategory().getTitle())
                 .build();
-        return todoDto;
+        return todoResponseDto;
     }
 }
