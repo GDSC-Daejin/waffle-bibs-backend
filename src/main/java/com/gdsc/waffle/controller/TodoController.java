@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -31,6 +33,12 @@ public class TodoController {
     public ResponseEntity<List<TodoResponseDto>> getAllTodos(@PathVariable Long categoryId) {
         if(todoService.existsId(categoryId)) {
             List<TodoResponseDto> todos = todoService.findAll(categoryId);
+            Collections.sort(todos, new Comparator<TodoResponseDto>() {
+                @Override
+                public int compare(TodoResponseDto o1, TodoResponseDto o2) {
+                    return (int) (o1.getId() - o2.getId());
+                }
+            });
             return new ResponseEntity<>(todos, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
