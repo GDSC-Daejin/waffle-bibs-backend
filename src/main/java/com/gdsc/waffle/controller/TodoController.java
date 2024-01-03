@@ -54,7 +54,7 @@ public class TodoController {
 
     @ApiOperation(value = "todo 상세 조회 API", notes = "선택한 Todo의 자세한 정보를 조회하는 API 입니다.")
     @ApiResponses({
-                    @ApiResponse(responseCode = "200", description = "성공적으로 생성되었습니다."),
+                    @ApiResponse(responseCode = "200", description = "성공적으로 조회되었습니다."),
                     @ApiResponse(responseCode = "404", description = "해당 Todo를 찾을 수 없습니다.")
     })
     @GetMapping("/todo/{todoId}")
@@ -66,14 +66,14 @@ public class TodoController {
 
     @ApiOperation(value = "todo 생성 API", notes = "새로운 Todo를 생성하는 API 입니다.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "성공적으로 조회되었습니다."),
+            @ApiResponse(responseCode = "200", description = "성공적으로 생성되었습니다."),
             @ApiResponse(responseCode = "404", description = "해당 카테고리를 찾을 수 없습니다.")
     })
     @PostMapping("/{categoryId}/todo/add")
     public ResponseEntity<TodoRequestDto> addTodo(@PathVariable Long categoryId, @RequestBody TodoRequestDto todoRequestDto) {
         if(todoService.existsId(categoryId)) {
-            todoService.addTodo(categoryId, todoRequestDto);
-            return new ResponseEntity<>(HttpStatus.OK);
+            TodoRequestDto addTodo = todoService.addTodo(categoryId, todoRequestDto);
+            return new ResponseEntity<>(addTodo, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -86,14 +86,18 @@ public class TodoController {
     })
     @PatchMapping("/todo/{todoId}/update")
     public ResponseEntity<TodoRequestDto> updateTodo(@PathVariable Long todoId, @RequestBody TodoRequestDto todoRequestDto) {
-        todoService.update(todoId, todoRequestDto);
-        return new ResponseEntity<>(HttpStatus.OK);
+        TodoRequestDto updateTodo = todoService.update(todoId, todoRequestDto);
+        return new ResponseEntity<>(updateTodo, HttpStatus.OK);
     }
 
     @ApiOperation(value = "todo 삭제 API", notes = "선택한 Todo를 삭제하는 API 입니다.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "성공적으로 삭제되었습니다..."),
+            @ApiResponse(responseCode = "404", description = "해당 Todo를 찾을 수 없습니다.")
+    })
     @DeleteMapping("/todo/{todoId}")
-    public ResponseEntity<Void> deleteTodo(@PathVariable Long todoId) {
-        todoService.deleteTodo(todoId);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<TodoResponseDto> deleteTodo(@PathVariable Long todoId) {
+        TodoResponseDto deleteTodo = todoService.deleteTodo(todoId);
+        return new ResponseEntity<>(deleteTodo, HttpStatus.OK);
     }
 }
