@@ -7,11 +7,11 @@ import com.gdsc.waffle.entity.TodoEntity;
 import java.util.List;
 
 public interface TodoService {
-    void addTodo(Long categoryId, TodoRequestDto todoRequestDto);
-    void deleteTodo(Long id);
+    TodoRequestDto addTodo(Long categoryId, TodoRequestDto todoRequestDto);
+    TodoResponseDto deleteTodo(Long id);
     List<TodoResponseDto> findAll(Long id);
     TodoResponseDto findById(Long id);
-    void update(Long id, TodoRequestDto updateParam);
+    TodoRequestDto update(Long id, TodoRequestDto updateParam);
     boolean existsId(Long categoryId);
 
 
